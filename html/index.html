@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="fr">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="description" content="Réservez votre vélos aux bornes JCDecaux en ligne!">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="author" content="Erwan MORIO">
+	<title>Location de vélos</title>
+	<link rel="stylesheet" href="../css/style.css">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+</head>
+
+<body>
+	<header>
+		<!-- diaporama de photos et de textes expliquant le fonctionnement de l'application. La logique du diaporama doit être écrite par vos soins. L’utilisation de tout plugin automatisant la logique de l’application est proscrite.
+
+		Le diaporama passe automatiquement à la diaporama suivante toutes les 5 secondes. L’utilisateur peut toutefois choisir de mettre le diaporama en pause. Il peut également reculer ou avancer manuellement à l’aide d’un clic de souris, ainsi qu’avec les touches gauche et droite de son clavier. -->
+		<h1>Location de vélo en ligne sur la ville de Lyon</h1>
+
+		<div id="slideshow">
+			<div class="slide">
+				<img src="../ressources/images/img1.jpg" alt="">
+				<div class="slide_text">
+					Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+				</div>
+			</div>
+
+			<div class="slide hide">
+				<img src="../ressources/images/img2.jpg" alt="">
+				<div class="slide_text">
+					Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+				</div>
+			</div>
+
+			<div class="slide hide">
+				<img src="../ressources/images/img3.jpg" alt="">
+				<div class="slide_text">
+					Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+				</div>
+			</div>
+
+			<div class="next_button">
+				<i class="fas fa-caret-right"></i>
+			</div>
+			<div class="previous_button">
+				<i class="fas fa-caret-left"></i>
+			</div>
+
+			<div id="play-pause_button">
+				<i class="fas fa-pause-circle"></i>
+			</div>
+		</div>
+	</header>
+
+	<section id="main">
+		<!-- Une carte affichant en temps réel la liste des stations de location de vélos ainsi que leur disponibilité.  La localisation de toutes les stations de vélos est affichée à l’aide de marqueurs.
+
+		La localisation et l'état de chaque station (ouverte, en travaux, combien de vélos et de places sont disponibles, etc.) est fourni via la plateforme OpenData de JC Decaux. -->
+		<div id="map"></div>
+
+		<aside>
+			<!-- Un clic sur un marqueur de la carte affiche l’état de la station dans un panneau construit en HTML et CSS à côté de la carte.
+			La carte doit être générée dynamiquement via un service de cartographie. -->
+			<div id="station_infos">
+				
+			</div>
+
+			<!-- Il doit être possible de réserver un vélo disponible à la station sélectionnée en :
+    				- indiquant son nom et son prénom,
+    				- signant dans un champ libre implémenté à l’aide de l’API HTML5 Canvas. -->
+			<div id="reservation">
+				
+			</div>
+		</aside>
+	</section>
+
+	<footer>
+		<!-- Les données de réservation seront stockées dans le navigateur à l’aide de l’API Web Storage et affichées en dessous du panneau. L'état de la réservation (s’il y en a une) est ainsi affiché, avec un décompte dynamique du temps restant avant expiration de la réservation.
+		Une réservation expire automatiquement au bout de 20 minutes et également lorsque le navigateur web se referme. -->
+		<p id="reservation_infos">Il n'y a actuellement aucune réservation en cours</p>
+	</footer>
+
+</body>
+</html>
