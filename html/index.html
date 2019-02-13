@@ -13,29 +13,29 @@
 
 <body>
 	<header>
-		<!-- diaporama de photos et de textes expliquant le fonctionnement de l'application. La logique du diaporama doit être écrite par vos soins. L’utilisation de tout plugin automatisant la logique de l’application est proscrite.
-
-		Le diaporama passe automatiquement à la diaporama suivante toutes les 5 secondes. L’utilisateur peut toutefois choisir de mettre le diaporama en pause. Il peut également reculer ou avancer manuellement à l’aide d’un clic de souris, ainsi qu’avec les touches gauche et droite de son clavier. -->
 		<h1>Location de vélo en ligne sur la ville de Lyon</h1>
 
 		<div id="slideshow">
-			<div class="slide">
+			<div class="slides">
 				<img src="../ressources/images/img1.jpg" alt="">
-				<div class="slide_text">
+				<div class="filter"></div>
+				<div class="slides_text">
 					Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
 				</div>
 			</div>
 
-			<div class="slide hide">
+			<div class="slides">
 				<img src="../ressources/images/img2.jpg" alt="">
-				<div class="slide_text">
+				<div class="filter"></div>
+				<div class="slides_text">
 					Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
 				</div>
 			</div>
 
-			<div class="slide hide">
+			<div class="slides">
 				<img src="../ressources/images/img3.jpg" alt="">
-				<div class="slide_text">
+				<div class="filter"></div>
+				<div class="slides_text">
 					Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
 				</div>
 			</div>
@@ -80,6 +80,13 @@
 		Une réservation expire automatiquement au bout de 20 minutes et également lorsque le navigateur web se referme. -->
 		<p id="reservation_infos">Il n'y a actuellement aucune réservation en cours</p>
 	</footer>
+
+	<script
+		src="https://code.jquery.com/jquery-3.3.1.min.js"
+		integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+		crossorigin="anonymous">
+	</script>
+	<script type="text/javascript" src="../js/slideshow-logic.js"></script>
 
 </body>
 </html>

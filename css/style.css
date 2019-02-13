@@ -2,6 +2,10 @@
     HEADER ---------------------------------------------------------------------------------------------------------------------------------------
     ----------------------------------------------------------------------------------------------------------------------------------------------
 */
+h1 {
+    text-align: center;
+}
+
 #slideshow * {
     box-sizing: border-box;
 }
@@ -12,7 +16,7 @@
     position: relative;
 }
 
-.slide {
+.slides {
     display: flex;
     justify-content: center;
     align-items: center;    
@@ -20,16 +24,18 @@
     overflow: hidden;
 }
 
-.hide {
-    display: none;
-}
-
-.slide img {
+.slides img {
     width: 90%;
-    /*display: none;*/
 }
 
-.slide_text {
+.filter {
+    width: 90%;
+    height: 100%;
+    position: absolute;
+    background: rgba(0,0,0,0.6);
+}
+
+.slides_text {
     position: absolute;
     font-size: 2em;
     width: 80%;
@@ -63,20 +69,27 @@
 }
 
 #play-pause_button {
+    cursor: pointer;
     font-size: 3em;
     position: absolute;
-    bottom: 5%;
+    bottom: 2%;
     left: 50%;
     margin-left: -24px;
-    background: white;
+    background: rgb(255,255,255);
+    color: rgb(0,0,0);
     border-radius: 23px;
-    height: 49px;
-    width: 49px;
-    display: flex;
-    justify-content: center;
+    height: 44px;
+    width: 44px;
+    transition: 0.5s ease;
+}
+
+#play-pause_button:hover {
+    background: rgba(0,0,0,1);
+    color: rgb(255,255,255);
 }
 
 #play-pause_button i {
     position: relative;
-    top: 1px;
+    top: -3px;
+    left: -2px;
 }
