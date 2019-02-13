@@ -9,6 +9,7 @@ $(function() {
     // gestion du bouton slide précédente
     $(".previous_button").click(previousSlide);
 
+    // gestion du changement de slide avec les flèches du clavier
     $("body").keydown(function(e) {
         if (e.keyCode == 39) {
             nextSlide();
@@ -60,17 +61,18 @@ $(function() {
         });
 
         // animation de changement de slide toute les 5 secondes
-        if (auto_slideshow) {
-            slidesIndex ++;
-            var slideshow_anime = setTimeout(function() {
+        var slideshow_anime = setTimeout(function() {
+            if (auto_slideshow) {
+                slidesIndex ++;
                 showSlides(slidesIndex);
-            }, 5000);
-        }
-        else {
-            clearTimeout(slideshow_anime);
-        }
+            }
+            else {
+                clearTimeout(slideshow_anime);
+            }
+        }, 5000);
     }
 
+    // fonctions de changement de slides
     function nextSlide() {
         $("#play-pause_button i").removeClass("fa-pause-circle").addClass("fa-play-circle");
         auto_slideshow = false;
