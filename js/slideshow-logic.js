@@ -4,24 +4,23 @@ $(function() {
     showSlides(slidesIndex);
 
     // gestion du bouton slide suivante
-    $(".next_button").click(function() {
-        $("#play-pause_button i").removeClass("fa-pause-circle").addClass("fa-play-circle");
-        slidesIndex ++;
-        auto_slideshow = false;
-        showSlides(slidesIndex);
-    });
+    $(".next_button").click(nextSlide);
 
     // gestion du bouton slide précédente
-    $(".previous_button").click(function() {
-        $("#play-pause_button i").removeClass("fa-pause-circle").addClass("fa-play-circle");
-        slidesIndex --;
-        auto_slideshow = false;
-        showSlides(slidesIndex);
+    $(".previous_button").click(previousSlide);
+
+    $("body").keydown(function(e) {
+        if (e.keyCode == 39) {
+            nextSlide();
+        }
+        else if (e.keyCode == 37) {
+            previousSlide();
+        }
     });
 
     // gestion de l'animation du slidehow au clique du bouton play/pause
     $("#play-pause_button").click(function() {
-        if ($("i", this).hasClass("fa-pause-circle")) {
+        if (auto_slideshow) {
             auto_slideshow = false;
             $("i", this).removeClass("fa-pause-circle").addClass("fa-play-circle");
         }
@@ -70,5 +69,19 @@ $(function() {
         else {
             clearTimeout(slideshow_anime);
         }
+    }
+
+    function nextSlide() {
+        $("#play-pause_button i").removeClass("fa-pause-circle").addClass("fa-play-circle");
+        auto_slideshow = false;
+        slidesIndex ++;
+        showSlides(slidesIndex);
+    }
+
+    function previousSlide() {
+        $("#play-pause_button i").removeClass("fa-pause-circle").addClass("fa-play-circle");
+        auto_slideshow = false;
+        slidesIndex --;
+        showSlides(slidesIndex);
     }
 })
