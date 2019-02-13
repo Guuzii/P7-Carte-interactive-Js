@@ -50,7 +50,10 @@ $(function() {
         // Affichage de la slide voulu en fonction de l'index
         $(".slides").each(function (elt) {
             if (elt == finalIndex) {
-                $(this).css("display", "flex");
+                $(this).css({
+                    "display": "flex",
+                    "opacity": 0.4
+                }).animate({"opacity": 1}, 1000);
             }
             else {
                 $(this).css("display", "none");
