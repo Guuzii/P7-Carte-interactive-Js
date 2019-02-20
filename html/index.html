@@ -54,24 +54,35 @@
 	</header>
 
 	<section id="main">
-		<!-- Une carte affichant en temps réel la liste des stations de location de vélos ainsi que leur disponibilité.  La localisation de toutes les stations de vélos est affichée à l’aide de marqueurs.
 
-		La localisation et l'état de chaque station (ouverte, en travaux, combien de vélos et de places sont disponibles, etc.) est fourni via la plateforme OpenData de JC Decaux. -->
 		<div id="map"></div>
 
 		<aside>
-			<!-- Un clic sur un marqueur de la carte affiche l’état de la station dans un panneau construit en HTML et CSS à côté de la carte.
-			La carte doit être générée dynamiquement via un service de cartographie. -->
 			<div id="station_infos">
-				
+				<h2>Informations sur la station :</h2>
+				<h3>Aucune station sélectionné !</h3>
+				<p id="address">Cliquez sur un marqueur de station pour afficher ses informations</p>
+				<p id="available_stands"></p>
+				<p id="available_bikes"></p>
 			</div>
 
-			<!-- Il doit être possible de réserver un vélo disponible à la station sélectionnée en :
-    				- indiquant son nom et son prénom,
-    				- signant dans un champ libre implémenté à l’aide de l’API HTML5 Canvas. -->
 			<div id="reservation">
-				
+				<h3>Réservation : </h3>
+				<form method="POST">
+					<label for="nom">Votre Nom : <br/></label> 
+					<input type="text" name="nom" placeholder="Votre Nom">
+					<br/>
+					<label for="prenom">Votre Prénom : <br/></label>
+					<input type="text" name="prenom" placeholder="Votre Prénom">
+					<br/>
+					<input type="submit" value="Réserver" id="confirm">
+				</form>
 			</div>
+			
+			<!-- Il doit être possible de réserver un vélo disponible à la station sélectionnée en :
+    			- indiquant son nom et son prénom,
+    			- signant dans un champ libre implémenté à l’aide de l’API HTML5 Canvas. -->
+			<div id="canvas"></div>
 		</aside>
 	</section>
 
@@ -79,17 +90,21 @@
 		<!-- Les données de réservation seront stockées dans le navigateur à l’aide de l’API Web Storage et affichées en dessous du panneau. L'état de la réservation (s’il y en a une) est ainsi affiché, avec un décompte dynamique du temps restant avant expiration de la réservation.
 		Une réservation expire automatiquement au bout de 20 minutes et également lorsque le navigateur web se referme. -->
 		<p id="reservation_infos">Il n'y a actuellement aucune réservation en cours</p>
+		<p id="reservation_name"></p>
+		<p id="reservation_address"></p>
+		<p id="reservation_time"></p>
 	</footer>
 
 	<script
 		src="https://code.jquery.com/jquery-3.3.1.min.js"
 		integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
 		crossorigin="anonymous">
-	</script>	
+	</script>
+	<script type="text/javascript" src="../js/ajax.js"></script>	
 	<script type="text/javascript" src="../js/slideshow-logic.js"></script>
 	<script type="text/javascript" src="../js/map.js"></script>
-	<script async defer
-		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCKe9ZklUJF9NCeL_k3QUqEjRHQiGCbYgE&callback=initMap">
-	</script>
+	<script type="text/javascript" src="../js/markerclusterer.js"></script>
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCKe9ZklUJF9NCeL_k3QUqEjRHQiGCbYgE&callback=initMap"
+	async defer></script>	
 </body>
 </html>

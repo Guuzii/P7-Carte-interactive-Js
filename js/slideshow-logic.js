@@ -32,6 +32,7 @@ $(function() {
         }
     });
 
+    // fonction principal d'affichage de slide.
     function showSlides(index) {
         // vérification de l'index de la slide à afficher
         var finalIndex;
