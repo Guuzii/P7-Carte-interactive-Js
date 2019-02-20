@@ -59,27 +59,31 @@ function initMap() {
         });
     });
     
+    // RESERVATION
     var minutes;
     var secondes;
 
+    // ajout d'un event au clique du bouton réserver
     $("#confirm").click(function(e) {
         e.preventDefault();
+        // initialisation des variable minutes et secondes qui détermine l'expiration de la résa
         minutes = 20;
         secondes = 0;
         var form = document.querySelector("#reservation form");
+        // nettoyage du sessionStorage de toutes infos antécédentes puis création des nouvelles infos de la résa
         if (sessionStorage.length > 0) {sessionStorage.clear()}
         sessionStorage.setItem("station", $("#station_infos h3").text());
         sessionStorage.setItem("adresse", $("#address").text());
         sessionStorage.setItem("nom", form.elements.nom.value);
         sessionStorage.setItem("prenom", form.elements.prenom.value);
+        // lancement du décompte d'expiration résa
         decompte();
-        /*$("#reservation_infos").replaceWith(
-            "<p>Vous avez une réservation au nom de " + sessionStorage.getItem("prenom") + " " +sessionStorage.getItem("nom") + ", à la station : " + sessionStorage.getItem("station") + "</p>" + 
-            "<p>" + sessionStorage.getItem("adresse") + "</p>");*/
+        // affichage des infos de résa
         $("#reservation_infos").text(sessionStorage.getItem("prenom") + " " + sessionStorage.getItem("nom") + " vous avez une réservation à la station : " + sessionStorage.getItem("station"));
         $("#reservation_address").text(sessionStorage.getItem("adresse"));
     });
 
+    // function de décompte + affichage de celui-ci
     function decompte() {
         var interval = setInterval(function () {
             if(secondes == 0 && minutes > 0) {
