@@ -1,4 +1,6 @@
 function initMap() {
+    sessionStorage.clear();
+
     // initialisation de la map
     var map = new google.maps.Map(document.querySelector("#map"), {            
         center: {lat: 45.763, lng: 4.831},
@@ -29,16 +31,33 @@ function initMap() {
                     // methode pour vérifier si il y a une réservation sur la station
                     // puis rendre la résa disponible si ce n'est pas le cas                   
                     affichageReservation: function() {
-                        if (this.booked) {
+                        if (sessionStorage.getItem("hasResa")) {
+                            $("#available_stands").text("Il y a " + this.available_bike_stands + " place(s) disponible(s) pour déposer votre vélo");
+                            if (sessionStorage.getItem("station") == this.name) {
+                                $("#available_bikes").text("Il y a " + (this.available_bikes - 1) + " vélo(s) disponible(s)");
+                            }
+                            else {
+                                $("#available_bikes").text("Il y a " + this.available_bikes + " vélo(s) disponible(s)");    
+                            }
+                            $("#reservation").show();
+                            $("#reservation form").hide();
+                            $("#reservation p").text("Vous avez déja une réservation en cours");
+                            $("#reservation p").show();
+                        }
+                        else if (this.available_bikes < 1) {
                             $("#available_stands").text("Il y a " + this.available_bike_stands + " place(s) disponible(s) pour déposer votre vélo");
                             $("#available_bikes").text("Il y a " + this.available_bikes + " vélo(s) disponible(s)");
-                            $("#reservation form").replaceWith("<p>Vous avez actuellement une réservation en cours sur cette station</p>");
                             $("#reservation").show();
+                            $("#reservation form").hide();
+                            $("#reservation p").text("Il n'y a plus de vélos disponible à la réservation sur cette station");
+                            $("#reservation p").show();
                         }
                         else {
                             $("#available_stands").text("Il y a " + this.available_bike_stands + " place(s) disponible(s) pour déposer votre vélo");
                             $("#available_bikes").text("Il y a " + this.available_bikes + " vélo(s) disponible(s)");
-                            $("#reservation").show();                            
+                            $("#reservation").show();
+                            $("#reservation form").show();
+                            $("#reservation p").hide();                           
                         }
                     },
                     map: map
@@ -47,7 +66,8 @@ function initMap() {
                 marker.addListener("click", function(e) {
                     $("#station_infos h3").text(this.name);
                     $("#address").text("Adresse : " + this.address);
-                    this.affichageReservation();          
+                    this.affichageReservation(); 
+                    console.log(this.available_bikes);         
                 });
                 markers.push(marker);
             }            
@@ -76,11 +96,17 @@ function initMap() {
         sessionStorage.setItem("adresse", $("#address").text());
         sessionStorage.setItem("nom", form.elements.nom.value);
         sessionStorage.setItem("prenom", form.elements.prenom.value);
-        // lancement du décompte d'expiration résa
-        decompte();
+        sessionStorage.setItem("hasResa", true);        
         // affichage des infos de résa
         $("#reservation_infos").text(sessionStorage.getItem("prenom") + " " + sessionStorage.getItem("nom") + " vous avez une réservation à la station : " + sessionStorage.getItem("station"));
         $("#reservation_address").text(sessionStorage.getItem("adresse"));
+        $("#reservation_infos_default").hide();
+        $("#actual_reservation").show();
+        // lancement du décompte d'expiration résa
+        decompte();
+        // Hide du formulaire aprés réservation
+        $("#reservation form").hide();
+        confirmation();
     });
 
     // function de décompte + affichage de celui-ci
@@ -95,8 +121,23 @@ function initMap() {
             }
             else {
                 clearInterval(interval);
+                $("#reservation_infos_default").show();
+                $("#actual_reservation").hide();
+                sessionStorage.clear();
             }
             $("#reservation_time").text("Temps restant avant expiration de votre réservation : " + minutes + " min " + secondes + "sec.");
         }, 1000);
     }
+
+    // Fonction d'affichage d'un message de confirmation à la réservation
+    function confirmation() {
+        var confirmation = document.createElement("p");
+        confirmation.textContent = "Réservation validée !";
+        confirmation.id = "confirmation";
+        $("#reservation").append(confirmation);
+        setTimeout(function() {
+            $("#confirmation").remove();
+        }, 2000);
+    }
+
 }
