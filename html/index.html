@@ -69,7 +69,8 @@
 
 			<div id="reservation">
 				<h3>Réservation : </h3>
-				<p>Vous avez actuellement une réservation en cours sur cette station</p>
+				<p></p>
+				<button type="button" id="cancel">Annuler ma réservation</button>
 				<form method="POST">
 					<label for="nom">Votre Nom : <br/></label> 
 					<input type="text" name="nom" placeholder="Votre Nom">
@@ -77,20 +78,21 @@
 					<label for="prenom">Votre Prénom : <br/></label>
 					<input type="text" name="prenom" placeholder="Votre Prénom">
 					<br/>
-					<input type="submit" value="Réserver" id="confirm">
+					<input type="submit" value="Réserver" id="reserver">
 				</form>
-			</div>
-			
-			<!-- Il doit être possible de réserver un vélo disponible à la station sélectionnée en :
-    			- indiquant son nom et son prénom,
-    			- signant dans un champ libre implémenté à l’aide de l’API HTML5 Canvas. -->
-			<div id="canvas"></div>
+
+				<div id="container_canvas">
+					<canvas id="signature" width="250" height="150"></canvas>
+					<div id="validation_canvas">
+						<button type="button" id="valider">Valider</button>			
+						<button type="button" id="effacer">Effacer</button>
+					</div>
+				</div>
+			</div>			
 		</aside>
 	</section>
 
 	<footer>
-		<!-- Les données de réservation seront stockées dans le navigateur à l’aide de l’API Web Storage et affichées en dessous du panneau. L'état de la réservation (s’il y en a une) est ainsi affiché, avec un décompte dynamique du temps restant avant expiration de la réservation.
-		Une réservation expire automatiquement au bout de 20 minutes et également lorsque le navigateur web se referme. -->
 		<p id="reservation_infos_default">Il n'y a actuellement aucune réservation en cours</p>
 		<div id="actual_reservation">
 			<p id="reservation_infos"></p>
@@ -106,6 +108,7 @@
 	</script>
 	<script type="text/javascript" src="../js/ajax.js"></script>	
 	<script type="text/javascript" src="../js/slideshow-logic.js"></script>
+	<script type="text/javascript" src="../js/reservation.js"></script>
 	<script type="text/javascript" src="../js/map.js"></script>
 	<script type="text/javascript" src="../js/markerclusterer.js"></script>
 	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCKe9ZklUJF9NCeL_k3QUqEjRHQiGCbYgE&callback=initMap"

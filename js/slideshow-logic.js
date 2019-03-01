@@ -1,6 +1,13 @@
+/*
+    GESTION DU DEFILEMENT AUTOMATIQUE DU SLIDESHOW ET DE SES BOUTONS
+*/
+
 $(function() {
+    // initialisation d'une variable determinant l'index de l'image à afficher 
     var slidesIndex = 0;
+    // initialisation du défilement automatique par défault
     var auto_slideshow = true;
+    // affichage des slides
     showSlides(slidesIndex);
 
     // gestion du bouton slide suivante

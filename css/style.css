@@ -120,3 +120,15 @@ aside {
 #reservation {
     display: none;
 }
+
+#cancel {
+    display: none;
+}
+
+#container_canvas canvas {
+    border: 1px solid rgb(0,0,0);
+}
+
+#container_canvas {
+    display: none;
+}
