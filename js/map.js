@@ -1,5 +1,6 @@
 /*
     CREATION DE LA MAP ET DES MARQUEURS DE STATIONS
+    (utilisation de l'api googlemaps)
 */
 
 function initMap() {
@@ -81,6 +82,7 @@ function initMap() {
         });
 
         // regroupement des marqueurs de notre tableau en cluster suivant le zoom sur la map
+        // utilisation d'un plug-in de l'api google maps
         var markerCluster = new MarkerClusterer(map, markers, {
             imagePath: "https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m"
         });

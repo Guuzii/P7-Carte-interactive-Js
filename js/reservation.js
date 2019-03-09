@@ -10,7 +10,9 @@ $(function() {
     var ctx = canvas.getContext("2d");
     ctx.strokeStyle = "red";
     ctx.lineWidth = 0.5;
-
+    // ajout d'une propiété à l'objet ctx qui nous permettrais de savoir si l'on dessine ou pas
+    ctx.isDrawing = false;
+    
     // création d'un objet timer qui servira à connaitre l'expiration d'une résa
     var timer = {
         minutes: 0,
@@ -30,6 +32,7 @@ $(function() {
                 else if (timer.secondes > 0) {
                     timer.secondes --;
                 }
+                // à la fin du decompte remise à zéro de l'interface et des données de réservation
                 else {
                     clearInterval(interval);
                     $("#reservation_infos_default").show();
@@ -107,13 +110,13 @@ $(function() {
         // création d'un nouveau trajet et déplacement du point de départ à la position du curseur
         ctx.beginPath();
         ctx.moveTo(e.offsetX, e.offsetY);
-        // passage de draw à true pour signaler qu'on veux dessiner
-        draw = true;
+        // on s'apprete à faire un tracé donc passage de la propriété isDrawing à true
+        ctx.isDrawing = true;
     });
 
     $("canvas").on("mousemove", function(e) {
         // vérification que l'on dessine
-        if (draw) {
+        if (ctx.isDrawing) {
             tracer(e.offsetX, e.offsetY);
         }
     });
@@ -121,15 +124,16 @@ $(function() {
     $("canvas").on("mouseup", function() {
         // fermeture du trajet créé
         ctx.closePath();
-        // passage de draw à false pour signaler qu'on à finis de dessiner
-        draw = false;
+        // on à finis notre tracé donc passage de isDrawing à false
+        ctx.isDrawing = false;
     });
 
 
     // FONCTIONS GENERALES -------------------------------------------------------
     // ---------------------------------------------------------------------------
 
-    // Fonction d'affichage d'un message de confirmation pendant 2 secondes
+    // fonction d'affichage d'un message de confirmation pendant 2 secondes
+    // puis remise à zéro de l'encadré d'information station
     function confirmation() {
         var confirmation = document.createElement("p");
         confirmation.textContent = "Réservation validée !";
@@ -137,6 +141,11 @@ $(function() {
         $("#reservation").append(confirmation);
         setTimeout(function() {
             $("#confirmation").remove();
+            $("#reservation").hide();
+            $("#station_infos h3").text("Aucune station sélectionné !");
+            $("#address").text("Cliquez sur un marqueur de station pour afficher ses informations");
+            $("#available_stands").text("");
+            $("#available_bikes").text("");
         }, 2000);
     }   
 
