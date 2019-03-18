@@ -4,6 +4,7 @@ Projet de création d'une application de réservation de vélo en ligne
 Liens vers le projet : à venir.
 
 Utilisation de L'api JCDecaux pour les données des vélos et station (https://developer.jcdecaux.com/#/home). 
+
 Utilisation de l'api Google Maps pour la gestion de la map (https://cloud.google.com/maps-platform/maps/).
 
 Sujet :
